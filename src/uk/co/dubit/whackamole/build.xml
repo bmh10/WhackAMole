@@ -1,0 +1,18 @@
+<project name = "build file" default = 'compile'>
+  
+  <target name = "folder">
+    <delete dir = "${basedir}/bin"/>
+    <mkdir dir = "${basedir}/bin"/>
+  </target>
+  
+  
+  <target name = 'compile' depends = 'folder'>
+    <property name = 'compiler' 
+         location = 'C:\Users\Ben\flex_sdk_4.1.0\bin\mxmlc.exe'/>
+    <exec executable = '${compiler}' failonerror = 'true'> 
+      <arg line = "-output '${basedir}/bin/WhackAMole.swf'"/>
+      <arg line = "WhackAMole.mxml"/>
+    </exec>
+  </target>
+
+</project>

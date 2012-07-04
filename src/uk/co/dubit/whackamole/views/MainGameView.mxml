@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<views:MainGameViewBase xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:views="uk.co.dubit.whackamole.views.*"
+		 xmlns:components="uk.co.dubit.whackamole.views.components.*"
+		 styleName="stretchToContainer">
+	<fx:Script>
+		<![CDATA[
+			import uk.co.dubit.whackamole.models.Achievements;
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:Sequence id="startAnimation" effectEnd="startAnimationEnd()">
+			<s:Sequence id="readyAnimation" target="{readyLabel}" >
+				<s:Parallel duration="400">
+					<s:Fade alphaFrom="0" alphaTo="1" />
+					<s:Scale scaleXFrom="0" scaleYFrom="0" scaleXTo="1" scaleYTo="1" />
+				</s:Parallel>
+				<s:Pause duration="1000" />
+				<s:Fade alphaFrom="1" alphaTo="0" duration="100" />
+			</s:Sequence>
+			<s:Sequence id="goAnimation" target="{goLabel}" >
+				<s:Parallel duration="400">
+					<s:Fade alphaFrom="0" alphaTo="1" />
+					<s:Scale scaleXFrom="0" scaleYFrom="0" scaleXTo="1" scaleYTo="1" />
+				</s:Parallel>
+				<s:Pause duration="1000" />
+				<s:Fade alphaFrom="1" alphaTo="0" duration="100" />
+			</s:Sequence>
+		</s:Sequence>
+	</fx:Declarations>
+	
+	<s:VGroup width="100%" height="100%" paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10" gap="10">
+		
+		<s:HGroup width="100%" height="100%" gap="10">
+			
+			<s:BorderContainer styleName="roundedBorder" minHeight="0" minWidth="0" width="66%" height="100%" >
+				
+				<s:Label id="readyLabel" text="Ready?" fontSize="72" color="0xffffff" verticalCenter="0" horizontalCenter="0" alpha="0">
+					<s:filters>
+						<s:GlowFilter color="0x000000" strength="10" />
+					</s:filters>		
+				</s:Label>
+				
+				<s:Label id="goLabel" text="Go!" fontSize="72" color="0xffffff" verticalCenter="0" horizontalCenter="0" alpha="0">
+					<s:filters>
+						<s:GlowFilter color="0x000000" strength="10" />
+					</s:filters>		
+				</s:Label>
+				
+				<s:DataGroup
+					id="moleHolesDataGroup"
+					dataProvider="{ moleHoles }"
+					itemRenderer="uk.co.dubit.whackamole.views.MoleHoleItemRenderer"
+					verticalCenter="0" horizontalCenter="0">
+					<s:layout>
+						<s:TileLayout requestedRowCount="3" requestedColumnCount="3" horizontalGap="10"	verticalGap="10" />
+					</s:layout>				
+				</s:DataGroup>
+			</s:BorderContainer>
+			
+			<s:VGroup width="33%" height="100%" gap="10">
+				
+				<s:BorderContainer styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="20" >
+					<s:Label text="Achievements" verticalCenter="0" horizontalCenter="0" />
+					<s:backgroundFill>
+						<s:SolidColor 
+							color="red" 
+							alpha="100"/>
+					</s:backgroundFill>
+					
+					
+				</s:BorderContainer>
+				
+				<s:BorderContainer styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="100%" >
+					<s:backgroundFill>
+						<s:SolidColor 
+							color="yellow" 
+							alpha="70"/>
+					</s:backgroundFill>
+					
+					<s:Label text="Apprentice" verticalCenter="-50" horizontalCenter="0" />
+					<s:BitmapImage source="@Embed('/../assets/green_tick.png')"  width="20" height="20" visible="{ Achievements.apprentice }" horizontalCenter="-55" verticalCenter="-50" />
+					
+					<s:Label text="Master" verticalCenter="-30" horizontalCenter="0" />
+					<s:BitmapImage source="@Embed('/../assets/green_tick.png')"  width="20" height="20" visible="{  Achievements.master }" horizontalCenter="-55" verticalCenter="-30" />
+					
+					<s:Label text="Mole Massacre" verticalCenter="-10" horizontalCenter="0" />
+					<s:BitmapImage source="@Embed('/../assets/green_tick.png')"  width="20" height="20" visible="{  Achievements.moleMassacre }" horizontalCenter="-55" verticalCenter="-10" />
+					
+					<s:Label text="Fireman" verticalCenter="10" horizontalCenter="0" />
+					<s:BitmapImage source="@Embed('/../assets/green_tick.png')"  width="20" height="20" visible="{  Achievements.fireman }" horizontalCenter="-55" verticalCenter="10" />
+					
+					<s:Label text="Apocolyptica" verticalCenter="30" horizontalCenter="0" />
+					<s:BitmapImage source="@Embed('/../assets/green_tick.png')"  width="20" height="20" visible="{  Achievements.apocolyptica }" horizontalCenter="-55" verticalCenter="30" />
+					
+					<s:Label text="Soft Touch" verticalCenter="50" horizontalCenter="0" />
+					<s:BitmapImage source="@Embed('/../assets/green_tick.png')"  width="20" height="20" visible="{  Achievements.softTouch }" horizontalCenter="-55" verticalCenter="50" />
+					
+				</s:BorderContainer>
+				
+				<s:BorderContainer styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="20" >
+					<s:Label text="Moles Left: {mainGame.molesRemaining} " verticalCenter="0" horizontalCenter="0" />
+					<s:backgroundFill>
+						<s:SolidColor 
+							color="red" 
+							alpha="100"/>
+					</s:backgroundFill>
+				</s:BorderContainer>
+			
+			</s:VGroup>
+			
+		</s:HGroup>
+		
+		
+		<s:BorderContainer styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="30" bottom="10" >
+			<s:Label text="Score: { mainGame.score }" left="10" verticalCenter="0" horizontalCenter="0"/>
+			<s:backgroundFill>
+				<s:SolidColor 
+					color="red" 
+					alpha="100"/>
+			</s:backgroundFill>
+		</s:BorderContainer>
+		
+	</s:VGroup>
+	
+</views:MainGameViewBase>
