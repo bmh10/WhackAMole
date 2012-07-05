@@ -16,7 +16,7 @@ package uk.co.dubit.whackamole.views
 
 		protected function onPlayAgainClick() : void
 		{
-			//PLay the game again
+			//Play the game again
 			controller.loadMainGame();
 		}
 		

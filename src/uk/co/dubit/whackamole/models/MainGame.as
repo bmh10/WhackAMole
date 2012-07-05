@@ -30,24 +30,24 @@ package uk.co.dubit.whackamole.models
 		public static var difficulty:int;
 		
 		//Game stats
+		public var achievements:Achievements;
 		public var molesKilled:int = 0;
 		public var fireMolesKilled:int = 0;
 		public var zombieMolesKilled:int = 0;
 		public var misses:int = 0;
-		public var achievements:Achievements;
-		
 		
 		private var gameTimer:Timer;
 		
-		private var GAME_TIMER_DELAY:int; //rate at which moles appear
-		public static var MOLE_SHOW_DELAY:int; //time moles stay on screen
+		//Rate at which moles appear
+		private var GAME_TIMER_DELAY:int; 
+		//Time moles stay on screen
+		public static var MOLE_SHOW_DELAY:int;
 		private const TOTAL_MOLES:int = 60;
 		[Bindable]public var molesRemaining:int = TOTAL_MOLES;
 
 		public function MainGame()
 		{
-			//Set up the game timer; when it fires a new
-			//mole is added
+			//Set up the game timer; when it fires a new mole is added
 			difficultySetup();
 			gameTimer = new Timer(GAME_TIMER_DELAY, TOTAL_MOLES);
 			gameTimer.addEventListener(TimerEvent.TIMER, onGameTimer);

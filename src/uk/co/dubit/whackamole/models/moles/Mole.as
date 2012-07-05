@@ -2,9 +2,7 @@ package uk.co.dubit.whackamole.models.moles
 {
 	import uk.co.dubit.whackamole.models.MainGame;
 	/**
-	 * The only type of mole at the moment;
-	 * one hit kills it
-	 * 
+	 * Implements all Mole types
 	 **/
 	public class Mole
 	{
@@ -13,16 +11,18 @@ package uk.co.dubit.whackamole.models.moles
 		
 		//Amount of time each mole is on screen
 		public var showtime:int = 1000;
-		[Bindable] public var dead:Boolean = false;
 		
 		//Number of hits required to kill mole
 		public var hitsToKill:int = 1;
 		private var hits:int = 0;
 		
+		[Bindable] public var dead:Boolean = false;
+		
 		public function Mole ()
 		{
 			var n:int = Math.random()*100;
 			
+			//Create certain type of Mole with set probabilities
 			if (n < 60)
 				setupStandardMole();
 			else if (n < 85)
@@ -35,6 +35,7 @@ package uk.co.dubit.whackamole.models.moles
 		{
 			hitsToKill = 1;	
 			points = 60;
+			//Showtime depends on difficulty
 			showtime = MainGame.MOLE_SHOW_DELAY;
 		}
 

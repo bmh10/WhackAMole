@@ -63,7 +63,6 @@ package uk.co.dubit.whackamole
 			if (score != 0)
 				GameOverViewBase.score = score;
 			
-			
 			//Clear any previous views in the container and add
 			viewContainer.removeAllElements();
 			viewContainer.addElement(view);
