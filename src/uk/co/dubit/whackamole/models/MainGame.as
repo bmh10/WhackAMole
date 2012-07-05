@@ -40,12 +40,10 @@ package uk.co.dubit.whackamole.models
 		private var gameTimer:Timer;
 		
 		private var GAME_TIMER_DELAY:int; //rate at which moles appear
-		private var MOLE_SHOW_DELAY:int; //time moles stay on screen
+		public static var MOLE_SHOW_DELAY:int; //time moles stay on screen
 		private const TOTAL_MOLES:int = 60;
 		[Bindable]public var molesRemaining:int = TOTAL_MOLES;
 
-		[Bindable]public var s:Sound = new Sound(); 
-		
 		public function MainGame()
 		{
 			//Set up the game timer; when it fires a new
@@ -55,22 +53,7 @@ package uk.co.dubit.whackamole.models
 			gameTimer.addEventListener(TimerEvent.TIMER, onGameTimer);
 			gameTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onGameTimerComplete);
 			achievements = new Achievements(this);
-			
-			s.addEventListener(Event.COMPLETE, onSoundLoaded); 
-			var req:URLRequest = new URLRequest("back1.mp3"); 
-			s.load(req); 
-			
 		}
-		
-		
-		public function onSoundLoaded(event:Event) : void 
-		{ 
-			var localSound:Sound = event.target as Sound; 
-			localSound.play(); 
-		}
-		
-		
-
 		
 		private function difficultySetup() : void
 		{
@@ -137,7 +120,7 @@ package uk.co.dubit.whackamole.models
 		{
 			//Every time the timer fires, add a new mole
 			var moleHole:MoleHole = getFreeMoleHole();
-			moleHole.populate(new Mole(MOLE_SHOW_DELAY));
+			moleHole.populate(new Mole());
 			molesRemaining--;
 		}
 		

@@ -1,5 +1,6 @@
 package uk.co.dubit.whackamole.models.moles
 {
+	import uk.co.dubit.whackamole.models.MainGame;
 	/**
 	 * The only type of mole at the moment;
 	 * one hit kills it
@@ -18,23 +19,23 @@ package uk.co.dubit.whackamole.models.moles
 		public var hitsToKill:int = 1;
 		private var hits:int = 0;
 		
-		public function Mole (st:int=0)
+		public function Mole ()
 		{
 			var n:int = Math.random()*100;
 			
 			if (n < 60)
-				setupStandardMole(st);
+				setupStandardMole();
 			else if (n < 85)
 				setupFireMole();
 			else
 				setupZombieMole();
 		}
 		
-		private function setupStandardMole(st:int) : void
+		private function setupStandardMole() : void
 		{
 			hitsToKill = 1;	
 			points = 60;
-			showtime = st;
+			showtime = MainGame.MOLE_SHOW_DELAY;
 		}
 
 		private function setupFireMole() : void
