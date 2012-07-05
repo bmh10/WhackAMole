@@ -5,6 +5,7 @@ package uk.co.dubit.whackamole.views
 	import uk.co.dubit.whackamole.framework.Model;
 	import uk.co.dubit.whackamole.framework.View;
 	import uk.co.dubit.whackamole.models.MainGame;
+	import uk.co.dubit.whackamole.WhackAMoleBase;
 	
 	public class GameOverViewBase extends View
 	{
@@ -12,7 +13,7 @@ package uk.co.dubit.whackamole.views
 	
 		[Bindable]
 		public static var score:int;
-	
+
 		protected function onPlayAgainClick() : void
 		{
 			//PLay the game again

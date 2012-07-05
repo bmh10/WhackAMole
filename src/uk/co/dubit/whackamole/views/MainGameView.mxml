@@ -58,15 +58,23 @@
 						<s:TileLayout requestedRowCount="3" requestedColumnCount="3" horizontalGap="10"	verticalGap="10" />
 					</s:layout>				
 				</s:DataGroup>
+				
+					<s:backgroundFill>
+						<!-- 0 rotation creates left to right gradient -->
+						<s:LinearGradient rotation="0">
+							<s:GradientEntry color="0x6600CC"/>
+							<s:GradientEntry color="0xCCCCCC"/>
+						</s:LinearGradient>
+					</s:backgroundFill>
 			</s:BorderContainer>
 			
 			<s:VGroup width="33%" height="100%" gap="10">
 				
-				<s:BorderContainer styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="20" >
-					<s:Label text="Achievements" verticalCenter="0" horizontalCenter="0" />
+				<s:BorderContainer styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="40" >
+					<s:Label text="Achievements" fontSize="20" verticalCenter="0" horizontalCenter="0" />
 					<s:backgroundFill>
 						<s:SolidColor 
-							color="red" 
+							color="0x42426F" 
 							alpha="100"/>
 					</s:backgroundFill>
 					
@@ -75,36 +83,38 @@
 				
 				<s:BorderContainer styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="100%" >
 					<s:backgroundFill>
-						<s:SolidColor 
-							color="yellow" 
-							alpha="70"/>
+						<!-- 0 rotation creates left to right gradient -->
+						<s:LinearGradient rotation="180">
+							<s:GradientEntry color="0x22316C"/> <!-- 0x6600CC -->
+							<s:GradientEntry color="0xCCCCCC"/>
+						</s:LinearGradient>
 					</s:backgroundFill>
 					
-					<s:Label text="Apprentice" verticalCenter="-50" horizontalCenter="0" />
-					<s:BitmapImage source="@Embed('/../assets/green_tick.png')"  width="20" height="20" visible="{ Achievements.apprentice }" horizontalCenter="-55" verticalCenter="-50" />
+					<s:Label text="Apprentice" fontSize="15" verticalCenter="-75" horizontalCenter="0" />
+					<s:BitmapImage source="@Embed('/../assets/green_tick.png')"  width="20" height="20" visible="{ Achievements.apprentice }" horizontalCenter="-65" verticalCenter="-75" />
 					
-					<s:Label text="Master" verticalCenter="-30" horizontalCenter="0" />
-					<s:BitmapImage source="@Embed('/../assets/green_tick.png')"  width="20" height="20" visible="{  Achievements.master }" horizontalCenter="-55" verticalCenter="-30" />
+					<s:Label text="Master" fontSize="15" verticalCenter="-45" horizontalCenter="0" />
+					<s:BitmapImage source="@Embed('/../assets/green_tick.png')"  width="20" height="20" visible="{  Achievements.master }" horizontalCenter="-65" verticalCenter="-45" />
 					
-					<s:Label text="Mole Massacre" verticalCenter="-10" horizontalCenter="0" />
-					<s:BitmapImage source="@Embed('/../assets/green_tick.png')"  width="20" height="20" visible="{  Achievements.moleMassacre }" horizontalCenter="-55" verticalCenter="-10" />
+					<s:Label text="Mole Massacre" fontSize="15" verticalCenter="-15" horizontalCenter="0" />
+					<s:BitmapImage source="@Embed('/../assets/green_tick.png')"  width="20" height="20" visible="{  Achievements.moleMassacre }" horizontalCenter="-65" verticalCenter="-15" />
 					
-					<s:Label text="Fireman" verticalCenter="10" horizontalCenter="0" />
-					<s:BitmapImage source="@Embed('/../assets/green_tick.png')"  width="20" height="20" visible="{  Achievements.fireman }" horizontalCenter="-55" verticalCenter="10" />
+					<s:Label text="Fireman" fontSize="15" verticalCenter="15" horizontalCenter="0" />
+					<s:BitmapImage source="@Embed('/../assets/green_tick.png')"  width="20" height="20" visible="{  Achievements.fireman }" horizontalCenter="-65" verticalCenter="15" />
 					
-					<s:Label text="Apocolyptica" verticalCenter="30" horizontalCenter="0" />
-					<s:BitmapImage source="@Embed('/../assets/green_tick.png')"  width="20" height="20" visible="{  Achievements.apocolyptica }" horizontalCenter="-55" verticalCenter="30" />
+					<s:Label text="Apocolyptica" fontSize="15" verticalCenter="45" horizontalCenter="0" />
+					<s:BitmapImage source="@Embed('/../assets/green_tick.png')"  width="20" height="20" visible="{  Achievements.apocolyptica }" horizontalCenter="-65" verticalCenter="45" />
 					
-					<s:Label text="Soft Touch" verticalCenter="50" horizontalCenter="0" />
-					<s:BitmapImage source="@Embed('/../assets/green_tick.png')"  width="20" height="20" visible="{  Achievements.softTouch }" horizontalCenter="-55" verticalCenter="50" />
+					<s:Label text="Soft Touch" fontSize="15" verticalCenter="75" horizontalCenter="0" />
+					<s:BitmapImage source="@Embed('/../assets/green_tick.png')"  width="20" height="20" visible="{  Achievements.softTouch }" horizontalCenter="-65" verticalCenter="75" />
 					
 				</s:BorderContainer>
 				
-				<s:BorderContainer styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="20" >
-					<s:Label text="Moles Left: {mainGame.molesRemaining} " verticalCenter="0" horizontalCenter="0" />
+				<s:BorderContainer styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="40" >
+					<s:Label text="Moles Left: {mainGame.molesRemaining}"  fontSize="20" verticalCenter="0" horizontalCenter="0" />
 					<s:backgroundFill>
 						<s:SolidColor 
-							color="red" 
+							color="0x42426F" 
 							alpha="100"/>
 					</s:backgroundFill>
 				</s:BorderContainer>
@@ -115,7 +125,7 @@
 		
 		
 		<s:BorderContainer styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="30" bottom="10" >
-			<s:Label text="Score: { mainGame.score }" left="10" verticalCenter="0" horizontalCenter="0"/>
+			<s:Label text="Score: { mainGame.score }" fontSize="20" left="10" verticalCenter="0" horizontalCenter="0"/>
 			<s:backgroundFill>
 				<s:SolidColor 
 					color="red" 

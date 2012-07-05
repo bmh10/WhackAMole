@@ -4,25 +4,140 @@
 		 xmlns:mx="library://ns.adobe.com/flex/mx"
 		 xmlns:views="uk.co.dubit.whackamole.views.*"
 		 styleName="stretchToContainer">
+	<fx:Script>
+		<![CDATA[
+			import flash.media.*;
+			
+			import uk.co.dubit.whackamole.WhackAMoleBase;
+			
+				[Embed(source="back1.mp3")]
+				[Bindable]
+				public static var sndCls:Class;
+		]]>
+	</fx:Script>
+	
 	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	
 	<s:VGroup width="100%" height="100%" paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10">
 		
-		<s:BorderContainer styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="40" >
-			<s:Label styleName="titleLabel" text="Welcome to Whack-A-Mole" horizontalCenter="0" verticalCenter="0"/>
+		<s:BorderContainer styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="80" >
+			<s:BitmapImage source="@Embed('/../assets/logo.png')" horizontalCenter="0" verticalCenter="0" />
 		</s:BorderContainer>
 		
-		<s:BorderContainer styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="100%" >
-			<s:Label text="You know the drill - click the moles as soon as they appear, gain points. Hit as many as you can within the time limit. Good luck!"
-					 horizontalCenter="0" verticalCenter="0" width="60%" textAlign="center" />
+		<s:BorderContainer styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="100%" 
+						   horizontalCenter="0" verticalCenter="0" top="5"
+							borderAlpha=".5" borderColor="0x000000" borderWeight="5">
+			<s:backgroundFill>
+				<!-- 0 rotation creates left to right gradient -->
+				<s:LinearGradient rotation="0">
+					<s:GradientEntry color="0x6600CC"/>
+					<s:GradientEntry color="0xCCCCCC"/>
+				</s:LinearGradient>
+			</s:backgroundFill>
 			
-			<s:Label text="Select a difficulty:"
-					 horizontalCenter="0" verticalCenter="100" width="60%" textAlign="center" />
-			<s:Button id="easyButton" click="onEasyButtonClick()" label="Easy" horizontalCenter="-100" bottom="10"/>
-			<s:Button id="mediumButton" click="onMediumButtonClick()" label="Medium" horizontalCenter="0" bottom="10"/>
-			<s:Button id="hardButton" click="onHardButtonClick()" label="Hard" horizontalCenter="100" bottom="10"/>
+			
+			<s:BitmapImage source="@Embed('/../assets/megaMole.png')" width="300" height="300" horizontalCenter="100" verticalCenter="-100" />
+			
+			<!-- Main Menu -->
+			
+			<mx:Button label=""
+					   visible="{menuIndex==0}"
+					   click="onPlayButtonClick()"
+					   horizontalCenter="-150"
+					   verticalCenter="-150"
+					   color="0xFFFFAA" 
+					   upSkin="@Embed(source='/../assets/start1.png')"
+					   overSkin="@Embed(source='/../assets/start2.png')"
+					   downSkin="@Embed(source='/../assets/start2.png')"/>
+			
+			<mx:Button label=""
+					   visible="{menuIndex==0}"
+					   click="onHelpButtonClick()"
+					   horizontalCenter="-150"
+					   verticalCenter="-100"
+					   color="0xFFFFAA" 
+					   upSkin="@Embed(source='/../assets/help1.png')"
+					   overSkin="@Embed(source='/../assets/help2.png')"
+					   downSkin="@Embed(source='/../assets/help2.png')"/>
+			
+			<!-- Difficulty Menu -->
+			
+			<s:Label text="Select a difficulty level:"
+					 visible="{menuIndex==1}"
+					 fontSize="20"
+					 horizontalCenter="-150" verticalCenter="-200" width="60%" textAlign="center" />
+			
+			<mx:Button label=""
+					   visible="{menuIndex==1}"
+					   click="onEasyButtonClick()"
+					   horizontalCenter="-150"
+					   verticalCenter="-150"
+					   color="0xFFFFAA" 
+					   upSkin="@Embed(source='/../assets/easy1.png')"
+					   overSkin="@Embed(source='/../assets/easy2.png')"
+					   downSkin="@Embed(source='/../assets/easy2.png')"/>
+			
+			<mx:Button label=""
+					   visible="{menuIndex==1}"
+					   click="onMediumButtonClick()"
+					   horizontalCenter="-150"
+					   verticalCenter="-100"
+					   color="0xFFFFAA" 
+					   upSkin="@Embed(source='/../assets/medium1.png')"
+					   overSkin="@Embed(source='/../assets/medium2.png')"
+					   downSkin="@Embed(source='/../assets/medium2.png')"/>
+			
+			<mx:Button label=""
+					   visible="{menuIndex==1}"
+					   click="onHardButtonClick()"
+					   horizontalCenter="-150"
+					   verticalCenter="-50"
+					   color="0xFFFFAA" 
+					   upSkin="@Embed(source='/../assets/hard1.png')"
+					   overSkin="@Embed(source='/../assets/hard2.png')"
+					   downSkin="@Embed(source='/../assets/hard2.png')"/>
+			
+			<!-- Help Menu -->
+			
+			<s:Label text="You know the drill - click the moles as soon as they appear to gain points. Hit as many as you can within the time limit to earn achievements. Look out for fire and zombie moles, they may take more hits to kill. Good luck!"
+					 visible="{menuIndex==2}"
+					 fontSize="12"
+					 horizontalCenter="-150" verticalCenter="-150" width="60%" textAlign="center" />
+		
+			
+			<mx:Button label=""
+					   visible="{menuIndex==2}"
+					   click="onBackButtonClick()"
+					   horizontalCenter="-150"
+					   verticalCenter="-50"
+					   color="0xFFFFAA" 
+					   upSkin="@Embed(source='/../assets/back1.png')"
+					   overSkin="@Embed(source='/../assets/back2.png')"
+					   downSkin="@Embed(source='/../assets/back2.png')"/>
+			
+			<!-- Sound on/off -->
+			
+			<mx:Button label=""
+					   visible="{WhackAMoleBase.soundOn}"
+					   click="{stopSound()}"
+					   horizontalCenter="-225"
+					   verticalCenter="-10"
+					   color="0xFFFFAA" 
+					   upSkin="@Embed(source='/../assets/soundOn.png')"
+					   overSkin="@Embed(source='/../assets/soundOn.png')"
+					   downSkin="@Embed(source='/../assets/soundOn.png')"/>
+			
+			<mx:Button label=""
+					   visible="{!WhackAMoleBase.soundOn}"
+					   click="{playSound()}"
+					   horizontalCenter="-225"
+					   verticalCenter="-10"
+					   color="0xFFFFAA" 
+					   upSkin="@Embed(source='/../assets/soundOff.png')"
+					   overSkin="@Embed(source='/../assets/soundOff.png')"
+					   downSkin="@Embed(source='/../assets/soundOff.png')"/>
+			
 		</s:BorderContainer>
 		
 	</s:VGroup>

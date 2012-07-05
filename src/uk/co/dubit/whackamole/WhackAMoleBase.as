@@ -10,10 +10,12 @@ package uk.co.dubit.whackamole
 	import uk.co.dubit.whackamole.framework.View;
 	import uk.co.dubit.whackamole.models.MainGame;
 	import uk.co.dubit.whackamole.views.GameOverView;
-	import uk.co.dubit.whackamole.views.IntroductionView;
-	import uk.co.dubit.whackamole.views.MainGameView;
 	import uk.co.dubit.whackamole.views.GameOverViewBase;
+	import uk.co.dubit.whackamole.views.IntroductionView;
+	import uk.co.dubit.whackamole.views.IntroductionViewBase;
+	import uk.co.dubit.whackamole.views.MainGameView;
 	
+	import flash.media.*;
 	
 	/**
 	 * This main application class implements the IGameController interface
@@ -26,7 +28,11 @@ package uk.co.dubit.whackamole
 		public var viewContainer:Group;
 		
 		private var score:int;
-				
+		private var s:String;
+		
+		[Bindable]
+		public static var soundOn:Boolean = true;
+		
 		public function WhackAMoleBase() : void
 		{
 			super();

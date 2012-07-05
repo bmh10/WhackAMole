@@ -10,19 +10,36 @@
 	
 	<s:VGroup width="100%" height="100%" paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10">
 		
-		<s:BorderContainer styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="40" >
-			<s:Label styleName="titleLabel" text="GAMEOVER" horizontalCenter="0" verticalCenter="0"/>
-			<s:backgroundFill>
-				<s:SolidColor 
-					color="red" 
-					alpha="100"/>
-			</s:backgroundFill>
+		<s:BorderContainer styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="80" >
+			<s:BitmapImage source="@Embed('/../assets/gameOver.png')" horizontalCenter="0" verticalCenter="0" />
 		</s:BorderContainer>
 		
-		<s:BorderContainer styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="100%" >
+		<s:BorderContainer styleName="roundedBorder" minHeight="0" minWidth="0" width="100%" height="100%" 
+						   horizontalCenter="0" verticalCenter="0" top="5"
+						   borderAlpha=".5" borderColor="0x000000" borderWeight="5">
+			<s:backgroundFill>
+				<!-- 0 rotation creates left to right gradient -->
+				<s:LinearGradient rotation="0">
+					<s:GradientEntry color="0x6600CC"/>
+					<s:GradientEntry color="0xCCCCCC"/>
+				</s:LinearGradient>
+			</s:backgroundFill>
+			
+			
+			<s:BitmapImage source="@Embed('/../assets/megaMole.png')" width="300" height="300" horizontalCenter="100" verticalCenter="-100" />
+			
 			<s:Label text="Score: {score}"
-					 horizontalCenter="0" verticalCenter="0" width="60%" textAlign="center" />
-			<s:Button id="startButton" click="onPlayAgainClick()" label="Play Again!" horizontalCenter="0" bottom="10"/>
+					 fontSize="25"
+					 horizontalCenter="-150" verticalCenter="-200" width="60%" textAlign="center" />
+			
+			<mx:Button label=""
+					   click="onPlayAgainClick()"
+					   horizontalCenter="-150"
+					   verticalCenter="-100"
+					   color="0xFFFFAA" 
+					   upSkin="@Embed(source='/../assets/playAgain1.png')"
+					   overSkin="@Embed(source='/../assets/playAgain2.png')"
+					   downSkin="@Embed(source='/../assets/playAgain2.png')"/>
 		</s:BorderContainer>
 		
 	</s:VGroup>

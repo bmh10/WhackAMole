@@ -4,11 +4,11 @@
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:local="*"
 			   width="550" height="400" xmlns:whackamole="uk.co.dubit.whackamole.*">
+
 	<fx:Style source="application.css" />
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
-	
 	<s:BorderContainer styleName="roundedBorder" left="10" top="10" right="10" bottom="10" >
 		<s:Group id="viewContainer" styleName="stretchToContainer" />
 	</s:BorderContainer>

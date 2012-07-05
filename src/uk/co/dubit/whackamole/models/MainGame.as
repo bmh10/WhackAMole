@@ -1,9 +1,13 @@
 package uk.co.dubit.whackamole.models
 {
 	import flash.events.TimerEvent;
+	import flash.events.Event; 
 	import flash.utils.Timer;
 	
 	import mx.collections.ArrayCollection;
+	
+	import flash.media.Sound;
+	import flash.net.URLRequest;
 	
 	import uk.co.dubit.whackamole.framework.Model;
 	import uk.co.dubit.whackamole.models.moles.Mole;
@@ -39,6 +43,8 @@ package uk.co.dubit.whackamole.models
 		private var MOLE_SHOW_DELAY:int; //time moles stay on screen
 		private const TOTAL_MOLES:int = 60;
 		[Bindable]public var molesRemaining:int = TOTAL_MOLES;
+
+		[Bindable]public var s:Sound = new Sound(); 
 		
 		public function MainGame()
 		{
@@ -49,7 +55,22 @@ package uk.co.dubit.whackamole.models
 			gameTimer.addEventListener(TimerEvent.TIMER, onGameTimer);
 			gameTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onGameTimerComplete);
 			achievements = new Achievements(this);
+			
+			s.addEventListener(Event.COMPLETE, onSoundLoaded); 
+			var req:URLRequest = new URLRequest("back1.mp3"); 
+			s.load(req); 
+			
 		}
+		
+		
+		public function onSoundLoaded(event:Event) : void 
+		{ 
+			var localSound:Sound = event.target as Sound; 
+			localSound.play(); 
+		}
+		
+		
+
 		
 		private function difficultySetup() : void
 		{
